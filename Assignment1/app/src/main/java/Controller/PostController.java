@@ -1,11 +1,17 @@
 package Controller;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.esc.assignment1.Component;
 import com.example.esc.assignment1.Main2ActivityFragment;
 import com.example.esc.assignment1.MainActivityFragment;
+import com.example.esc.assignment1.R;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 
@@ -27,11 +33,16 @@ public class PostController {
 
     }
 
-    public  static void getPost(){
-           new OpenConnection().execute("https://dl.dropboxusercontent.com/s/7rvknz9e6tfprun/facebookFeed.json");
+    public  static void getPost(Context context){
+           new OpenConnection(context).execute("https://dl.dropboxusercontent.com/s/7rvknz9e6tfprun/facebookFeed.json");
     }
 
     public static class OpenConnection extends AsyncTask<String,Void, ArrayList<Component>>{
+
+        private  Context context;
+        public OpenConnection(Context context){
+            this.context = context;
+        }
 
         @Override
         protected ArrayList<Component> doInBackground(String... params) {
@@ -65,31 +76,38 @@ public class PostController {
         }
         @Override
         protected void onPostExecute(ArrayList<Component>details){
-            Main2ActivityFragment fragment = new Main2ActivityFragment();
-            String comments=null,likes=null,shares=null,name=null,post=null,profile=null,image=null;
+            TextView userName = (TextView)((Activity)context).findViewById(R.id.userName);
+            TextView post1 = (TextView)((Activity)context).findViewById(R.id.post);
+            TextView likes1 = (TextView)((Activity)context).findViewById(R.id.likes);
+            TextView comments1 = (TextView)((Activity)context).findViewById(R.id.comments);
+            TextView shares1 = (TextView)((Activity)context).findViewById(R.id.shares);
+            ImageView profile1 = (ImageView) ((Activity)context).findViewById(R.id.userImage);
+            ImageView postImage = (ImageView) ((Activity)context).findViewById(R.id.postImage);
             for(Component com : details){
                 if(com.getName().equals("comments"))
-                    comments = com.getContent();
+                    comments1.setText(com.getContent());
                 else if(com.getName().equals("likes"))
-                    likes = com.getContent();
+                    likes1.setText(com.getContent());
                 else if(com.getName().equals("shares"))
-                    shares = com.getContent();
+                    shares1.setText(com.getContent());
                 else if(com.getName().equals("post"))
-                    post = com.getContent();
+                    post1.setText(com.getContent());
                 else if(com.getName().equals("name"))
-                    name = com.getContent();
-                else if(com.getName().equals("userImage"))
-                    profile = com.getContent();
+                    userName.setText(com.getContent());
+                else if(com.getName().equals("userImage")){
+                    Picasso.with(context).load(com.getContent())
+                            .resize(100,100).centerCrop()
+                            .into(profile1);
+                }
                 else if(com.getName().equals("postImage"))
-                    image = com.getContent();
+                {
+                    Picasso.with(context).load(com.getContent())
+                            .resize(400,400).centerCrop()
+                            .into(postImage);
+                }
             }
-            fragment.comments = comments;
-            fragment.likes = likes;
-            fragment.shares = shares;
-            fragment.post = post;
-            fragment.name = name;
-            fragment.profile = profile;
-            fragment.image = image;
+
+
         }
     }
 }

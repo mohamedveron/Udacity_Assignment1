@@ -15,14 +15,12 @@ import Controller.PostController;
  */
 public class Main2ActivityFragment extends Fragment {
     public Button start;
-    public String comments,likes,shares,name,post,profile,image;
     public Main2ActivityFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        PostController.getPost();
         View view = inflater.inflate(R.layout.fragment_main2, container, false);
         start = (Button) view.findViewById(R.id.start);
         start.setOnClickListener(new View.OnClickListener() {

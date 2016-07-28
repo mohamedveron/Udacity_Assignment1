@@ -37,51 +37,59 @@
         android:layout_height="wrap_content">
         <TextView android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/likes"/>
+        android:id="@+id/likes"
+            android:layout_weight="1" />
 
         <TextView android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/comments"/>
+            android:id="@+id/comments"
+            android:layout_weight="1" />
 
         <TextView android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/shares"/>
+            android:id="@+id/shares"
+            android:layout_weight="1" />
 
     </TableRow>
-    <LinearLayout
+    <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/likeImage"
-            android:src="@drawable/ic_launcher"/>
+            android:src="@drawable/like"
+            android:layout_weight="1" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Like"
-            android:id="@+id/like" />
+            android:id="@+id/like"
+            android:layout_weight="1" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/commentImage"
-            android:src="@drawable/ic_launcher"/>
+            android:src="@drawable/comment"
+            android:layout_weight="1" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Comment"
-            android:id="@+id/comment" />
+            android:id="@+id/comment"
+            android:layout_weight="1" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/shareImage"
-            android:src="@drawable/ic_launcher"/>
+            android:src="@drawable/share"
+            android:layout_weight="1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -89,7 +97,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Share"
             android:id="@+id/share"
-            />
-    </LinearLayout>
+            android:layout_weight="1" />
+    </TableRow>
 
 </LinearLayout>
