@@ -76,6 +76,8 @@ public class PostController {
         }
         @Override
         protected void onPostExecute(ArrayList<Component>details){
+            //MainActivityFragment fragment = new MainActivityFragment();
+            //fragment.updatePostView(details);
             TextView userName = (TextView)((Activity)context).findViewById(R.id.userName);
             TextView post1 = (TextView)((Activity)context).findViewById(R.id.post);
             TextView likes1 = (TextView)((Activity)context).findViewById(R.id.likes);
